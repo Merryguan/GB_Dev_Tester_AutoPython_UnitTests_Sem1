@@ -1,7 +1,5 @@
 package seminars.first.Calculator;
 
-import seminars.first.Calculator.Calculator;
-
 import static org.assertj.core.api.Assertions.*;
 
 public class CalculatorTest {
@@ -69,9 +67,17 @@ public class CalculatorTest {
         // HW1.3: Сравните одну и ту же проверку с использованием условий, ассертов, AssertJ
         // в каком случае стандартное сообщение об ошибке будет более информативным?
         // if (0 != seminars.first.Calculator.Calculator.calculation(2, 6, '+')) {
-        //     throw new AssertionError("Ошибка в методе");
+        //      throw new AssertionError("Ошибка в методе");
         // }
-        //   assert 0 == seminars.first.Calculator.Calculator.calculation(2, 6, '+');
-        //    assertThat(seminars.first.Calculator.Calculator.calculation(2, 6, '+')).isEqualTo(0);
+        // assert 0 == seminars.first.Calculator.Calculator.calculation(2, 6, '+');
+        // assertThat(seminars.first.Calculator.Calculator.calculation(2, 6, '+')).isEqualTo(0);
+
+        System.out.println(Calculator.calculatingDiscount(40_000, 30));
+        assertThat(Calculator.calculatingDiscount(40_000, 0)).isEqualTo(40_000);
+        assertThat(Calculator.calculatingDiscount(40_000, 50)).isEqualTo(20_000);
+        assertThat(Calculator.calculatingDiscount(40_000, 100)).isEqualTo(0);
+        assertThatThrownBy(() -> Calculator.calculatingDiscount(-30_000, 20)).isInstanceOf(ArithmeticException.class);
+        assertThatThrownBy(() -> Calculator.calculatingDiscount(30_000, -20)).isInstanceOf(ArithmeticException.class);
+        assertThatThrownBy(() -> Calculator.calculatingDiscount(30_000, 120)).isInstanceOf(ArithmeticException.class);
     }
 }

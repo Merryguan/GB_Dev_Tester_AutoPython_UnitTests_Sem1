@@ -44,7 +44,11 @@ public class Calculator {
     // Примерная сигнатура и тело метода:
     public static double calculatingDiscount(double purchaseAmount, int discountAmount) {
         // purchaseAmount - сумма покупки
-        // discountAmount - размер скидки
-        return 0; // Метод должен возвращать сумму покупки со скидкой
+        // discountAmount - размер скидки в %
+        if (purchaseAmount < 0) { throw new ArithmeticException("Значение суммы покупки меньше нуля."); }
+        if (discountAmount < 0) { throw new ArithmeticException("Значение скидки меньше нуля."); }
+        if (discountAmount > 100) { throw new ArithmeticException("Значение скидки больше 100%."); }
+        float discount = (float) (100 - discountAmount) / 100;
+        return purchaseAmount * discount; // Метод должен возвращать сумму покупки со скидкой
     }
 }
